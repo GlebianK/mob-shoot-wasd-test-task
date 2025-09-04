@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 207270693}
   - component: {fileID: 207270697}
   - component: {fileID: 207270696}
+  - component: {fileID: 207270698}
   - component: {fileID: 207270695}
   m_Layer: 0
   m_Name: Player
@@ -469,6 +470,30 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fd36625e-198f-4cc4-91ac-81b9a78a5f6c
     m_ActionName: 'Player/Look[/Mouse/delta,/Device Simulator Touchscreen/delta]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 207270698}
+        m_TargetAssemblyTypeName: PlayerShoot, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6906cb74-4537-4ccd-967c-20f5bc536f39
+    m_ActionName: 'Player/Shoot[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 83e3ce25-9cc6-4f54-b98c-5fb7e6edbe57
+    m_ActionName: Gameplay UI/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6682cec9-0cd3-4917-afec-b5ea5987175b
+    m_ActionName: Menus/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -516,6 +541,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &207270698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207270691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73c01697756b824f852bffcb944ce09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &475895688
 GameObject:
   m_ObjectHideFlags: 0

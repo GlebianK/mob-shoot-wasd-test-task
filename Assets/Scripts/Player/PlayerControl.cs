@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     private Vector2 direction;
     private Vector2 dragOrTouchDelta;
 
+    #region UNITY METHODS
     private void Start()
     {
         direction = Vector2.zero;
@@ -21,7 +22,9 @@ public class PlayerControl : MonoBehaviour
         MovePlayer();
         RotatePlayer();
     }
+    #endregion
 
+    #region CUSTOM PRIVATE METHODS
     private void MovePlayer()
     {
         if (direction != Vector2.zero)
@@ -32,15 +35,25 @@ public class PlayerControl : MonoBehaviour
 
     private void RotatePlayer()
     {
-        if (dragOrTouchDelta != Vector2.zero)
+        if (GameManager.Instance.CurrentDeviceType == DeviceType.Handheld)
         {
-            float angleInDergrees = dragOrTouchDelta.y != 0 ? dragOrTouchDelta.y : dragOrTouchDelta.x;
-            transform.Rotate(Vector3.forward, angleInDergrees * playerRotationSpeed * Time.deltaTime);
+            if (dragOrTouchDelta != Vector2.zero)
+            {
+                float angleInDergrees = dragOrTouchDelta.y != 0 ? dragOrTouchDelta.y : dragOrTouchDelta.x;
+                transform.Rotate(Vector3.forward, angleInDergrees * playerRotationSpeed * Time.deltaTime);
+            }
+        }
+        else if (GameManager.Instance.CurrentDeviceType == DeviceType.Desktop)
+        {
+            Vector2 rotationDirection = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
+            float angle = Mathf.Atan2(rotationDirection.y, rotationDirection.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = rotation;
         }
     }
+    #endregion
 
-    #region INPUT CALLBACKS
-
+    #region INPUT SYSTEM CALLBACKS
     public void OnMove(InputAction.CallbackContext callback)
     {
         if (callback.performed)
@@ -62,6 +75,5 @@ public class PlayerControl : MonoBehaviour
 
         //RotatePlayer();
     }
-
     #endregion
 }
