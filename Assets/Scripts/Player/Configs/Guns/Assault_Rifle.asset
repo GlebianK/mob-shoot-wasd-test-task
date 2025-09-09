@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dfead54940e1b449a5b113afcd2b18f, type: 3}
-  m_Name: Gun
+  m_Name: Assault_Rifle
   m_EditorClassIdentifier: 
-  gunName: Just Gun
-  gunShootType: 0
-  gunCooldownBetweenShots: 1
-  gunProjectilePrefab: {fileID: 0}
+  gunName: Assault Rifle
+  gunShootType: 2
+  gunCooldownBetweenShots: 0.1
+  gunProjectilePrefab: {fileID: 5883011829515291743, guid: 7de56de943d9ca548986109be0885a46, type: 3}

@@ -15,4 +15,4 @@ MonoBehaviour:
   gunName: Shotgun
   gunShootType: 1
   gunCooldownBetweenShots: 2
-  gunProjectilePrefab: {fileID: 0}
+  gunProjectilePrefab: {fileID: 7434436961893714909, guid: e72a01985eec8e44f97b44a05d52c2e5, type: 3}

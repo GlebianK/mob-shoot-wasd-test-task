@@ -12,19 +12,17 @@ public class Gun : MonoBehaviour
     private float cooldownBetweenShots;
     private GameObject projectile;
 
-    // ÕŒ–Ã¿À‹ÕŒ Œ–√¿Õ»«Œ¬¿“‹ œ”À œ”À‹! ◊ÂÂÁ ÒÎÓ‚‡¸?.. —ÔËÒÓÍ?.. Ã‡ÒÒË‚?..
-
-    private List<GameObject> projectilePool;
+    private Queue<GameObject> projectilePool;
 
     private GameObject TakeFromPool()
     {
-        Debug.Log($"Took projectile from pool! Pool size: {projectilePoolSize}");
-        return null;
-    }
+        if (projectilePool.Count < 1)
+            return null;
 
-    private void ReturnToPool(GameObject objectToReturn)
-    {
-        Debug.Log($"Returned projectile from pool! Pool size: { projectilePoolSize}");
+        GameObject temp = projectilePool.Peek();
+        Debug.Log($"Took projectile from pool! Pool size: {projectilePool.Count}");
+        temp.SetActive(true);
+        return temp;
     }
 
     public void InitializeGun()
@@ -32,17 +30,45 @@ public class Gun : MonoBehaviour
         gunName = gunConfig.gunName;
         shootType = gunConfig.gunShootType;
         cooldownBetweenShots = gunConfig.gunCooldownBetweenShots;
+        Debug.LogWarning("Gun initialized!");
+    }
+
+    public void InitializeProjectiles()
+    {
         projectile = gunConfig.gunProjectilePrefab;
 
-        for (int i = 0; i < projectilePoolSize; i++)
+        if (projectile != null)
         {
-            GameObject temp = Instantiate(projectile, firePoint.transform, true);
-            projectilePool.Add(temp);
+            for (int i = 0; i < projectilePoolSize; i++)
+            {
+                GameObject temp = Instantiate(projectile, firePoint.transform, true);
+                projectilePool.Enqueue(temp);
+
+                if (temp.TryGetComponent<Projectile>(out Projectile projectileComponent))
+                {
+                    projectileComponent.SetParentGun(gameObject);
+                }
+
+                temp.SetActive(false);
+            }
+            Debug.LogWarning("Projectiles initialized!");
         }
+        else
+            Debug.LogError($"NO PROJECTILES FOR THE GUN! Gun name: {gameObject.name}");
     }
 
     public void Shoot()
     {
         Debug.LogWarning("¡¿Ã, ¡À_“‹!");
+        GameObject temp = TakeFromPool();
+         if (temp.TryGetComponent<Projectile>(out Projectile projectileComponent))
+            projectileComponent.FireProjectile();
+    }
+
+    public void ReturnToPool(GameObject objectToReturn)
+    {
+        projectilePool.Enqueue(objectToReturn);
+        objectToReturn.SetActive(false);
+        Debug.Log($"Returned projectile from pool! Pool size: {projectilePool.Count}");
     }
 }
