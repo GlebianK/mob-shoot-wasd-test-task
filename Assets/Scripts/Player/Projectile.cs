@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     private float speed;
 
     private GameObject parentGun;
+    private GameObject parentFirePoint;
 
     public float Damage => damage;
 
@@ -21,25 +22,33 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.LogWarning($"Trigger collision with {col.gameObject.name}");
-        if (col.gameObject.CompareTag("Enemy"))
+        Debug.LogWarning($"Projectile.cs: Hit!");
+        if (!col.gameObject.CompareTag("Player"))
         {
             // TODO: добавить отнятие здоровья
-            Debug.LogWarning($"Projectile {gameObject.name} hit smth! (smth is {col.gameObject.name})");
-        }
+            Debug.Log($"Projectile {gameObject.name} hit smth! (smth is {col.gameObject.name})");
 
-        if (parentGun.TryGetComponent<Gun>(out Gun gunComponent))
-            gunComponent.ReturnToPool(gameObject);
+            if (parentGun.TryGetComponent<Gun>(out Gun gunComponent))
+                gunComponent.ReturnToPool(gameObject);
+            else
+                Debug.LogError("Projectile -> OnTrigEn2d -> No parent gun or Gun component on it!");
+
+            transform.parent = parentFirePoint.transform;
+            transform.localPosition = Vector3.zero;
+            transform.localEulerAngles = Vector3.zero;
+        }        
     }
 
     public void FireProjectile()
     {
-        rb.AddRelativeForce(shootDirection * (speed* Time.deltaTime));
+        transform.parent = null;
+        rb.AddRelativeForce(shootDirection * speed);
     }
 
-    public void SetParentGun(GameObject gun)
+    public void SetParentGun(GameObject gun, GameObject gunFirePoint)
     {
-        parentGun = gun;   
+        parentGun = gun;
+        parentFirePoint = gunFirePoint;
     }
 
 }

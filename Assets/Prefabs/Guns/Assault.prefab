@@ -133,5 +133,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2204411256184659591}
-  gunConfig: {fileID: 11400000, guid: e49f7f1541bfee243a30a5c456852aa0, type: 2}
-  projectilePoolSize: 5
+  gunConfig: {fileID: 11400000, guid: e5075d572e461f940999b01e2c8c1d61, type: 2}
+  projectilePoolSize: 10

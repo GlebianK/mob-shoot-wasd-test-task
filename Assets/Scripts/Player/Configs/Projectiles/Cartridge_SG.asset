@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Cartridge_SG
   m_EditorClassIdentifier: 
   projectileDamage: 4.75
-  projectileSpeed: 250
+  projectileSpeed: 500

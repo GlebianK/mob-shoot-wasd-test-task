@@ -71,7 +71,7 @@ public class PlayerControl : MonoBehaviour
     public void OnLook(InputAction.CallbackContext callback)
     {
         dragOrTouchDelta = callback.ReadValue<Vector2>();
-        Debug.Log($"OnLook callback. Value = {dragOrTouchDelta}");
+        //Debug.Log($"OnLook callback. Value = {dragOrTouchDelta}");
 
         //RotatePlayer();
     }

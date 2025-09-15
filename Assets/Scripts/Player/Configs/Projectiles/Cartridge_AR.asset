@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Cartridge_AR
   m_EditorClassIdentifier: 
   projectileDamage: 2.5
-  projectileSpeed: 75
+  projectileSpeed: 1000

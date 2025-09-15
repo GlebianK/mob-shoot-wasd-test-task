@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
 
+        Application.targetFrameRate = 60;
+
         switch (SystemInfo.deviceType)
         {
             case DeviceType.Desktop:

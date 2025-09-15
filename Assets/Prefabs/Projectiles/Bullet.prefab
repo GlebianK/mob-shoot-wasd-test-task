@@ -177,3 +177,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 11400000, guid: 325e383c256fd114cb9acae6c7211183, type: 2}
   rb: {fileID: 6290200124972671268}
+  shootDirection: {x: 1, y: 0}

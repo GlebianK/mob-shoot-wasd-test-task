@@ -14,14 +14,19 @@ public class Gun : MonoBehaviour
 
     private Queue<GameObject> projectilePool;
 
+    private void Awake()
+    {
+        projectilePool = new();
+    }
+
     private GameObject TakeFromPool()
     {
         if (projectilePool.Count < 1)
             return null;
 
-        GameObject temp = projectilePool.Peek();
+        GameObject temp = projectilePool.Dequeue();
         Debug.Log($"Took projectile from pool! Pool size: {projectilePool.Count}");
-        temp.SetActive(true);
+        //temp.SetActive(true);
         return temp;
     }
 
@@ -30,7 +35,7 @@ public class Gun : MonoBehaviour
         gunName = gunConfig.gunName;
         shootType = gunConfig.gunShootType;
         cooldownBetweenShots = gunConfig.gunCooldownBetweenShots;
-        Debug.LogWarning("Gun initialized!");
+        Debug.LogWarning($"Gun \"{gameObject.name}\" initialized!");
     }
 
     public void InitializeProjectiles()
@@ -41,12 +46,16 @@ public class Gun : MonoBehaviour
         {
             for (int i = 0; i < projectilePoolSize; i++)
             {
-                GameObject temp = Instantiate(projectile, firePoint.transform, true);
+                GameObject temp = Instantiate(projectile, firePoint.transform, false);
                 projectilePool.Enqueue(temp);
 
                 if (temp.TryGetComponent<Projectile>(out Projectile projectileComponent))
                 {
-                    projectileComponent.SetParentGun(gameObject);
+                    projectileComponent.SetParentGun(gameObject, firePoint);
+                }
+                else
+                {
+                    Debug.LogError("No projectile components found for current projectile!");
                 }
 
                 temp.SetActive(false);
@@ -61,14 +70,23 @@ public class Gun : MonoBehaviour
     {
         Debug.LogWarning("¡¿Ã, ¡À_“‹!");
         GameObject temp = TakeFromPool();
-         if (temp.TryGetComponent<Projectile>(out Projectile projectileComponent))
+
+        if (temp == null)
+            return;
+
+        temp.SetActive(true);
+        if (temp.TryGetComponent<Projectile>(out Projectile projectileComponent))
             projectileComponent.FireProjectile();
+        else
+            Debug.LogError("Gun -> Shoot -> No projectile component for current projectile!");
     }
 
     public void ReturnToPool(GameObject objectToReturn)
     {
         projectilePool.Enqueue(objectToReturn);
         objectToReturn.SetActive(false);
-        Debug.Log($"Returned projectile from pool! Pool size: {projectilePool.Count}");
+        Debug.Log($"Returned projectile to pool! Pool size: {projectilePool.Count}");
     }
+
+    // TODO: cooldown between shots coroutine
 }
