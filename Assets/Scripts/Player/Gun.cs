@@ -25,7 +25,7 @@ public class Gun : MonoBehaviour
             return null;
 
         GameObject temp = projectilePool.Dequeue();
-        Debug.Log($"Took projectile from pool! Pool size: {projectilePool.Count}");
+        //Debug.Log($"Took projectile from pool! Pool size: {projectilePool.Count}");
         //temp.SetActive(true);
         return temp;
     }
@@ -35,7 +35,7 @@ public class Gun : MonoBehaviour
         gunName = gunConfig.gunName;
         shootType = gunConfig.gunShootType;
         cooldownBetweenShots = gunConfig.gunCooldownBetweenShots;
-        Debug.LogWarning($"Gun \"{gameObject.name}\" initialized!");
+        //Debug.LogWarning($"Gun \"{gameObject.name}\" initialized!");
     }
 
     public void InitializeProjectiles()
@@ -60,7 +60,7 @@ public class Gun : MonoBehaviour
 
                 temp.SetActive(false);
             }
-            Debug.LogWarning("Projectiles initialized!");
+            //Debug.LogWarning("Projectiles initialized!");
         }
         else
             Debug.LogError($"NO PROJECTILES FOR THE GUN! Gun name: {gameObject.name}");
@@ -85,7 +85,7 @@ public class Gun : MonoBehaviour
     {
         projectilePool.Enqueue(objectToReturn);
         objectToReturn.SetActive(false);
-        Debug.Log($"Returned projectile to pool! Pool size: {projectilePool.Count}");
+        //Debug.Log($"Returned projectile to pool! Pool size: {projectilePool.Count}");
     }
 
     // TODO: cooldown between shots coroutine

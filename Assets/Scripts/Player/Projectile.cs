@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
         if (!col.gameObject.CompareTag("Player"))
         {
             // TODO: добавить отнятие здоровья
-            Debug.Log($"Projectile {gameObject.name} hit smth! (smth is {col.gameObject.name})");
+            //Debug.Log($"Projectile {gameObject.name} hit smth! (smth is {col.gameObject.name})");
 
             if (parentGun.TryGetComponent<Gun>(out Gun gunComponent))
                 gunComponent.ReturnToPool(gameObject);

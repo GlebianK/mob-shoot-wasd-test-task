@@ -38,7 +38,8 @@ public class PlayerShoot : MonoBehaviour
 
             if (temp_gun.TryGetComponent<Gun>(out Gun gunComponent))
                 gunComponents.Add(gunComponent);
-            //gun.InitializeProjectiles();
+            else
+                Debug.LogError("Player shoot -> Awake -> Couldn't find Gun component!");
         }
 
         for (int i = 0; i < guns.Count; i++) // Отсключаем "лишние" оружия

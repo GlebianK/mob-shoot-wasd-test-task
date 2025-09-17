@@ -4,9 +4,12 @@ public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float move_speed;
+    [SerializeField] private float rotation_speed = 35.5f;
     [SerializeField] private float damage;
 
     private GameObject target;
+
+    private Vector3 rotateDirection;
 
     private void Start()
     {
@@ -19,17 +22,32 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Update()
     {
-        MoveEnemyToTarget();
+        RotateEnemyTowardsTarget();
+        MoveEnemyTowardsTarget();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log($"Enemy ({gameObject.name}) hit {col.gameObject.name}!");
+
         //TODO get health component
     }
 
-    private void MoveEnemyToTarget()
+    private void RotateEnemyTowardsTarget()
     {
-        //TODO двигать врага к игроку
+        if (target != null)
+        {
+            rotateDirection = (target.transform.position - transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(rotateDirection, transform.up);
+
+            Quaternion rotationQuaternion = Quaternion.RotateTowards(transform.rotation, targetRotation, rotation_speed * Time.deltaTime);
+
+            rb.SetRotation(rotationQuaternion);
+        }
+    }
+
+    private void MoveEnemyTowardsTarget()
+    {
+        rb.linearVelocity = rotateDirection * (move_speed * Time.deltaTime);
     }
 }
