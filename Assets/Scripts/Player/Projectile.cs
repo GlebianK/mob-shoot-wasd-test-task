@@ -25,8 +25,11 @@ public class Projectile : MonoBehaviour
         Debug.LogWarning($"Projectile.cs: Hit!");
         if (!col.gameObject.CompareTag("Player"))
         {
-            // TODO: добавить отнятие здоровья
             //Debug.Log($"Projectile {gameObject.name} hit smth! (smth is {col.gameObject.name})");
+            if (col.gameObject.TryGetComponent<Health>(out Health targetHealth))
+            {
+                targetHealth.TakeDamage(damage);
+            }
 
             if (parentGun.TryGetComponent<Gun>(out Gun gunComponent))
                 gunComponent.ReturnToPool(gameObject);

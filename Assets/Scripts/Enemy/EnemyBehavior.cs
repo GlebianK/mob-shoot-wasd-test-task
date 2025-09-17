@@ -23,14 +23,17 @@ public class EnemyBehavior : MonoBehaviour
     private void Update()
     {
         RotateEnemyTowardsTarget();
-        MoveEnemyTowardsTarget();
+        //MoveEnemyTowardsTarget();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log($"Enemy ({gameObject.name}) hit {col.gameObject.name}!");
 
-        //TODO get health component
+        if (col.gameObject.CompareTag("Player") && col.gameObject.TryGetComponent<Health>(out Health playerHealth))
+        {
+            playerHealth.TakeDamage(damage);
+        }
     }
 
     private void RotateEnemyTowardsTarget()
@@ -49,5 +52,10 @@ public class EnemyBehavior : MonoBehaviour
     private void MoveEnemyTowardsTarget()
     {
         rb.linearVelocity = rotateDirection * (move_speed * Time.deltaTime);
+    }
+
+    public void OnDied() // callback для Died-события компонента Health
+    {
+        Destroy(gameObject);
     }
 }

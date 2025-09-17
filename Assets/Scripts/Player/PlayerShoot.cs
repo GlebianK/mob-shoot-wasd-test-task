@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
+    [SerializeField] private Health health;
     [SerializeField] private GameObject gunPivot;
     [SerializeField] private GameObject[] gunPrefabs;
     [SerializeField] private float gunSwitchCooldown = 0.75f;
@@ -97,6 +98,11 @@ public class PlayerShoot : MonoBehaviour
         StartCoroutine(SwitchGunCD());
     }
     #endregion
+
+    public void OnTakeDamage()
+    {
+
+    }
 
     #region INPUT SYSTEM CALLBACKS
     public void OnShoot(InputAction.CallbackContext context)

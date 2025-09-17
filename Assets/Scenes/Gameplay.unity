@@ -440,6 +440,7 @@ GameObject:
   - component: {fileID: 207270694}
   - component: {fileID: 207270693}
   - component: {fileID: 207270697}
+  - component: {fileID: 207270699}
   - component: {fileID: 207270696}
   - component: {fileID: 207270698}
   - component: {fileID: 207270695}
@@ -725,12 +726,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73c01697756b824f852bffcb944ce09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 0}
   gunPivot: {fileID: 113737258}
   gunPrefabs:
   - {fileID: 7635965119899244334, guid: 9b3bbd435382a9945bcd410fce9c14f6, type: 3}
   - {fileID: 7635965119899244334, guid: 11489fc02ca604f4997ae3cef76aa928, type: 3}
   - {fileID: 7635965119899244334, guid: 85648c3ebecc17a43ac0f2f3ea58ba59, type: 3}
   gunSwitchCooldown: 0.75
+--- !u!114 &207270699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207270691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d0944d81670ee4c990d64e0db556ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 25
+  iFrameDuration: 1.75
+  TookDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  Died:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &267088792
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,6 +1340,7 @@ GameObject:
   - component: {fileID: 657334293}
   - component: {fileID: 657334292}
   - component: {fileID: 657334291}
+  - component: {fileID: 657334296}
   - component: {fileID: 657334295}
   m_Layer: 0
   m_Name: EnemyLight
@@ -1486,6 +1509,38 @@ MonoBehaviour:
   move_speed: 250
   rotation_speed: 375
   damage: 5
+--- !u!114 &657334296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657334290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d0944d81670ee4c990d64e0db556ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 10
+  iFrameDuration: 0
+  TookDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  Died:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 657334295}
+        m_TargetAssemblyTypeName: EnemyBehavior, Assembly-CSharp
+        m_MethodName: OnDied
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &730345811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,6 +1640,7 @@ GameObject:
   - component: {fileID: 775428255}
   - component: {fileID: 775428258}
   - component: {fileID: 775428257}
+  - component: {fileID: 775428260}
   - component: {fileID: 775428259}
   m_Layer: 0
   m_Name: EnemyHeavy
@@ -1753,6 +1809,38 @@ MonoBehaviour:
   move_speed: 200
   rotation_speed: 250
   damage: 10
+--- !u!114 &775428260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775428254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d0944d81670ee4c990d64e0db556ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 20
+  iFrameDuration: 0
+  TookDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  Died:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 775428259}
+        m_TargetAssemblyTypeName: EnemyBehavior, Assembly-CSharp
+        m_MethodName: OnDied
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &919061843
 GameObject:
   m_ObjectHideFlags: 0
