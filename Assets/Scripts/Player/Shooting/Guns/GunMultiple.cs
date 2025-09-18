@@ -12,8 +12,6 @@ public class GunMultiple : GunBase
     {
         base.Awake();
         InitializeLists();
-        Debug.Log($"List of projectiles size: {projectiles.Count}");
-        Debug.Log($"List of directions size: {projectileShootDirections.Count}");
         SetProjectileDirections();
     }
 
@@ -54,7 +52,7 @@ public class GunMultiple : GunBase
         {
             for (int i = 0; i < projectilesPerShot; i++)
             {
-                Debug.Log($"i: {i}/{projectilesPerShot}");
+                //Debug.Log($"i: {i}/{projectilesPerShot - 1}");
                 float x = (float)(projectilesPerShot - i)/ (float)projectilesPerShot;
 
                 float y = i/ (float)projectilesPerShot;
@@ -84,7 +82,7 @@ public class GunMultiple : GunBase
     protected override GameObject TakeFromPool()
     {
         GameObject temp = projectilePool.Dequeue();
-        Debug.Log($"GunSingle: Took projectile from pool! Pool size: {projectilePool.Count}");
+        //Debug.Log($"GunMultiple: Took projectile from pool! Pool size: {projectilePool.Count}");
         return temp;
     }
 
@@ -96,7 +94,7 @@ public class GunMultiple : GunBase
         if (projectilePool.Count < projectilesPerShot)
             return;
 
-        Debug.LogWarning("ÁÀÌ, ÁË_ÒÜ!");
+        //Debug.LogWarning("ÁÀÌ!");
         for (int i = 0; i < projectiles.Count; i++)
         {
             GameObject temp = TakeFromPool();

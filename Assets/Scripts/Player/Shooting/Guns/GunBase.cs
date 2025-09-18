@@ -61,7 +61,7 @@ public class GunBase : MonoBehaviour
         if (projectilePool.Count < 1)
             return;
 
-        Debug.LogWarning("ÁÀÌ, ÁË_ÒÜ!");
+        //Debug.LogWarning("ÁÀÌ!");
         GameObject temp = TakeFromPool();
 
         if (temp == null)
@@ -80,6 +80,10 @@ public class GunBase : MonoBehaviour
     {
         projectilePool.Enqueue(objectToReturn);
         objectToReturn.SetActive(false);
+
+        objectToReturn.transform.parent = firePoint.transform;
+        objectToReturn.transform.localEulerAngles = Vector3.zero;
+        objectToReturn.transform.localPosition = Vector3.zero;
         //Debug.Log($"Returned projectile to pool! Pool size: {projectilePool.Count}");
     }
 

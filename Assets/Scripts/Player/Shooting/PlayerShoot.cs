@@ -110,7 +110,7 @@ public class PlayerShoot : MonoBehaviour
     {
         if (context.performed)
         {
-            //Debug.LogWarning($"LMB 1: {context.action}");
+            //Debug.LogWarning($"LMB press: {context.action}");
             ShootGun();
         }
     }
@@ -119,7 +119,7 @@ public class PlayerShoot : MonoBehaviour
     {
         if (context.performed)
         {
-            //Debug.LogWarning($"LMB 2: {context.action}");
+            //Debug.LogWarning($"LMB release: {context.action}");
             StopShoot();
         }
     }

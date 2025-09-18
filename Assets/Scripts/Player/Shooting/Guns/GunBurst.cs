@@ -8,7 +8,7 @@ public class GunBurst : GunBase
             return null;
 
         GameObject temp = projectilePool.Dequeue();
-        Debug.Log($"GunSingle: Took projectile from pool! Pool size: {projectilePool.Count}");
+        //Debug.Log($"GunBurst: Took projectile from pool! Pool size: {projectilePool.Count}");
         return temp;
     }
 

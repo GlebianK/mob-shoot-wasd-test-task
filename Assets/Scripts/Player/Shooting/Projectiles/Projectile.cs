@@ -7,10 +7,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Vector2 shootDirection;
 
-    
-
     private GameObject parentGun;
-    private GameObject parentFirePoint;
+    //private GameObject parentFirePoint;
 
     public float Damage => damage;
 
@@ -30,9 +28,11 @@ public class Projectile : MonoBehaviour
             else
                 Debug.LogError("Projectile -> OnTrigEn2d -> No parent gun or Gun component on it!");
 
-            transform.localEulerAngles = Vector3.zero;
+            /*
             transform.parent = parentFirePoint.transform;
+            transform.localEulerAngles = Vector3.zero;
             transform.localPosition = Vector3.zero;
+            */
         }        
     }
 
@@ -45,7 +45,7 @@ public class Projectile : MonoBehaviour
     public void SetParentGun(GameObject gun, GameObject gunFirePoint)
     {
         parentGun = gun;
-        parentFirePoint = gunFirePoint;
+        //parentFirePoint = gunFirePoint;
     }
 
     public void SetShootDirection(Vector2 direction)
