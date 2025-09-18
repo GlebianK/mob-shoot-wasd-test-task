@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float speed;
     [SerializeField] private Vector2 shootDirection;
+    [SerializeField] private Vector3 basicScale = new Vector3(0.5f, 0.5f, 0.5f);
 
     private GameObject parentGun;
     //private GameObject parentFirePoint;
@@ -15,7 +16,7 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.LogWarning($"Projectile.cs: Hit!");
-        if (!col.gameObject.CompareTag("Player"))
+        if (!col.gameObject.CompareTag("Player") && !col.gameObject.CompareTag("Projectile"))
         {
             //Debug.Log($"Projectile {gameObject.name} hit smth! (smth is {col.gameObject.name})");
             if (col.gameObject.TryGetComponent<Health>(out Health targetHealth))
@@ -39,6 +40,7 @@ public class Projectile : MonoBehaviour
     public void FireProjectile()
     {
         transform.parent = null;
+        transform.localScale = basicScale;
         rb.AddRelativeForce(shootDirection * speed);
     }
 

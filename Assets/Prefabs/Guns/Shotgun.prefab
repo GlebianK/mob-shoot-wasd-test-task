@@ -134,6 +134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2204411256184659591}
   projectilePoolSize: 10
-  cooldownBetweenShots: 1
+  cooldownBetweenShots: 0.85
   projectile: {fileID: 5883011829515291743, guid: 56f034af7af7d2d44b131bac2732f5f6, type: 3}
   projectilesPerShot: 3
