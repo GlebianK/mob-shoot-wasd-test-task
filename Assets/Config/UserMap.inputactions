@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Release",
+                    "type": "Button",
+                    "id": "27a3d809-d3f3-4cd6-9fe7-aa930058c6f2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Switch Weapon",
                     "type": "Value",
                     "id": "5021f0e3-21dc-4201-a2f8-429b56c4d3d9",
@@ -168,7 +177,7 @@
                     "name": "",
                     "id": "65d9144a-a1d1-452a-987a-f1a981ddf64c",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
@@ -183,6 +192,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Switch Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7183d42d-b7ab-4adc-af84-21dbee5bee2c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Release",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
