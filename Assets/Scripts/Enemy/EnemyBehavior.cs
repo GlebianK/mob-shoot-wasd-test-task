@@ -8,8 +8,10 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private float damage;
 
     private GameObject target;
-
     private Vector3 rotateDirection;
+    private GameObject parentPool;
+
+    public GameObject ParentPool => parentPool;
 
     private void Start()
     {
@@ -23,12 +25,12 @@ public class EnemyBehavior : MonoBehaviour
     private void Update()
     {
         RotateEnemyTowardsTarget();
-        //MoveEnemyTowardsTarget();
+        MoveEnemyTowardsTarget();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log($"Enemy ({gameObject.name}) hit {col.gameObject.name}!");
+        //Debug.Log($"Enemy ({gameObject.name}) hit {col.gameObject.name}!");
 
         if (col.gameObject.CompareTag("Player") && col.gameObject.TryGetComponent<Health>(out Health playerHealth))
         {
@@ -54,8 +56,18 @@ public class EnemyBehavior : MonoBehaviour
         rb.linearVelocity = rotateDirection * (move_speed * Time.deltaTime);
     }
 
+    public void SetParentPool(GameObject poolToSet)
+    {
+        parentPool = poolToSet;
+    }
+
     public void OnDied() // callback для Died-события компонента Health
     {
+        /*
+        if (parentPool.TryGetComponent<EnemySpawner>(out EnemySpawner enemySpawner))
+        {
+            enemySpawner.ReturnEnemyToPool(gameObject);
+        }*/
         Destroy(gameObject);
     }
 }

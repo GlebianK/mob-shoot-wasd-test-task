@@ -75,7 +75,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void SwitchGun(int prevOrNext)
     {
-        Debug.Log($"Switching gun... Input parameter is {prevOrNext}");
+        //Debug.Log($"Switching gun... Input parameter is {prevOrNext}");
 
         if (!canSwitchGun)
             return;
@@ -92,14 +92,14 @@ public class PlayerShoot : MonoBehaviour
         else if (currentGunId < 0)
             currentGunId = guns.Count - 1;
 
-        Debug.Log($"Cur gun: {currentGun.gameObject.name}");
+        //Debug.Log($"Cur gun: {currentGun.gameObject.name}");
         currentGun.gameObject.SetActive(false);
 
         currentGun = gunComponents[currentGunId];
 
         currentGun.gameObject.SetActive(true);
-        Debug.Log($"Cur gun: {currentGun.gameObject.name}");
-        Debug.Log($"PlayerShoot: Gun switched! Current gun id: {currentGunId}");
+        //Debug.Log($"Cur gun: {currentGun.gameObject.name}");
+        //Debug.Log($"PlayerShoot: Gun switched! Current gun id: {currentGunId}");
         StartCoroutine(SwitchGunCD());
     }
     #endregion

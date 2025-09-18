@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2368000239159517583}
-  damage: 2.5
-  speed: 425
+  damage: 3.75
+  speed: 525
   shootDirection: {x: 1, y: 0}
   basicScale: {x: 0.5, y: 0.5, z: 0.5}

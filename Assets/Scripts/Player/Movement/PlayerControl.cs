@@ -75,5 +75,25 @@ public class PlayerControl : MonoBehaviour
 
         //RotatePlayer();
     }
+
+    public void OnQuit(InputAction.CallbackContext callback)
+    {
+        if (callback.performed)
+        {
+            Application.Quit();
+        }
+    }
+    #endregion
+
+    #region OTHER CALLBACKS
+    public void OnTakeDamage()
+    {
+       
+    }
+
+    public void OnDied()
+    {
+
+    }
     #endregion
 }

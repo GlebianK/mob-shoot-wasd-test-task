@@ -38,7 +38,7 @@ public class GunBase : MonoBehaviour
 
                 if (temp.TryGetComponent<Projectile>(out Projectile projectileComponent))
                 {
-                    projectileComponent.SetParentGun(gameObject, firePoint);
+                    projectileComponent.SetParentGun(gameObject);
                 }
                 else
                 {

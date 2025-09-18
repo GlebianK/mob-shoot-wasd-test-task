@@ -9,13 +9,12 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Vector3 basicScale = new Vector3(0.5f, 0.5f, 0.5f);
 
     private GameObject parentGun;
-    //private GameObject parentFirePoint;
 
     public float Damage => damage;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.LogWarning($"Projectile.cs: Hit!");
+        //Debug.LogWarning($"Projectile.cs: Hit!");
         if (!col.gameObject.CompareTag("Player") && !col.gameObject.CompareTag("Projectile"))
         {
             //Debug.Log($"Projectile {gameObject.name} hit smth! (smth is {col.gameObject.name})");
@@ -28,12 +27,6 @@ public class Projectile : MonoBehaviour
                 gunComponent.ReturnToPool(gameObject);
             else
                 Debug.LogError("Projectile -> OnTrigEn2d -> No parent gun or Gun component on it!");
-
-            /*
-            transform.parent = parentFirePoint.transform;
-            transform.localEulerAngles = Vector3.zero;
-            transform.localPosition = Vector3.zero;
-            */
         }        
     }
 
@@ -44,10 +37,9 @@ public class Projectile : MonoBehaviour
         rb.AddRelativeForce(shootDirection * speed);
     }
 
-    public void SetParentGun(GameObject gun, GameObject gunFirePoint)
+    public void SetParentGun(GameObject gun)
     {
         parentGun = gun;
-        //parentFirePoint = gunFirePoint;
     }
 
     public void SetShootDirection(Vector2 direction)
