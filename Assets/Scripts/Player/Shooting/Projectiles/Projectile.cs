@@ -2,23 +2,17 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private ProjectileType projectile;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float damage;
+    [SerializeField] private float speed;
     [SerializeField] private Vector2 shootDirection;
 
-    private float damage;
-    private float speed;
+    
 
     private GameObject parentGun;
     private GameObject parentFirePoint;
 
     public float Damage => damage;
-
-    private void Awake()
-    {
-        damage = projectile.projectileDamage;
-        speed = projectile.projectileSpeed;
-    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -36,9 +30,9 @@ public class Projectile : MonoBehaviour
             else
                 Debug.LogError("Projectile -> OnTrigEn2d -> No parent gun or Gun component on it!");
 
+            transform.localEulerAngles = Vector3.zero;
             transform.parent = parentFirePoint.transform;
             transform.localPosition = Vector3.zero;
-            transform.localEulerAngles = Vector3.zero;
         }        
     }
 
@@ -52,6 +46,11 @@ public class Projectile : MonoBehaviour
     {
         parentGun = gun;
         parentFirePoint = gunFirePoint;
+    }
+
+    public void SetShootDirection(Vector2 direction)
+    {
+        shootDirection = direction;
     }
 
 }

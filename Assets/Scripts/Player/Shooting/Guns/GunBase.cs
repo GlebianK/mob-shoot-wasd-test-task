@@ -14,7 +14,7 @@ public class GunBase : MonoBehaviour
 
     public bool IsTriggerPulled { get; set; }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         projectilePool = new();
         canShoot = true;
@@ -56,6 +56,9 @@ public class GunBase : MonoBehaviour
     public virtual void Shoot()
     {
         if (!canShoot)
+            return;
+
+        if (projectilePool.Count < 1)
             return;
 
         Debug.LogWarning("ÁÀÌ, ÁË_ÒÜ!");

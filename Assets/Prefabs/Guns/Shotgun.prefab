@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1657192891893937073}
   - component: {fileID: 567415316020256139}
-  - component: {fileID: 6184802300097760156}
+  - component: {fileID: 8628636956362274362}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -120,7 +120,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &6184802300097760156
+--- !u!114 &8628636956362274362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,9 +129,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7635965119899244334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a92b8d19cafcde04a9dd44d4b6bf8d82, type: 3}
+  m_Script: {fileID: 11500000, guid: 5301731db2bc39144b8a3f4d907b770d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2204411256184659591}
-  gunConfig: {fileID: 11400000, guid: 2cc6113b93f4f9b45825aef4fe225c17, type: 2}
-  projectilePoolSize: 9
+  projectilePoolSize: 10
+  cooldownBetweenShots: 1
+  projectile: {fileID: 5883011829515291743, guid: 56f034af7af7d2d44b131bac2732f5f6, type: 3}
+  projectilesPerShot: 3

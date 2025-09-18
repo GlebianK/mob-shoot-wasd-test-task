@@ -135,4 +135,4 @@ MonoBehaviour:
   firePoint: {fileID: 2204411256184659591}
   projectilePoolSize: 5
   cooldownBetweenShots: 0.75
-  projectile: {fileID: 0}
+  projectile: {fileID: 4570568158291861500, guid: a98bc03cb14dee848b0977568ee83fef, type: 3}

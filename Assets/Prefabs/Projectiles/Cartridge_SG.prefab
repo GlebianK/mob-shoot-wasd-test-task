@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2bd95658cca414e9fdddad81523109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 11400000, guid: bdd523a0721606b45a55302316ca58eb, type: 2}
   rb: {fileID: 2368000239159517583}
-  shootDirection: {x: 1, y: 1}
+  damage: 7.5
+  speed: 250
+  shootDirection: {x: 0, y: 0}
