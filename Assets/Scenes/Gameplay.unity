@@ -667,6 +667,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5021f0e3-21dc-4201-a2f8-429b56c4d3d9
     m_ActionName: 'Player/Switch Weapon[/Mouse/scroll/down,/Mouse/scroll/up]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 207270698}
+        m_TargetAssemblyTypeName: PlayerShoot, Assembly-CSharp
+        m_MethodName: OnRelease
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 27a3d809-d3f3-4cd6-9fe7-aa930058c6f2
+    m_ActionName: 'Player/Release[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -3034,8 +3050,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2204411257503115714}
-  gunConfig: {fileID: 11400000, guid: e49f7f1541bfee243a30a5c456852aa0, type: 2}
   projectilePoolSize: 5
+  cooldownBetweenShots: 0
+  projectile: {fileID: 0}
 --- !u!1 &6209422402771584516
 GameObject:
   m_ObjectHideFlags: 0

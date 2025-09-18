@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
                 targetHealth.TakeDamage(damage);
             }
 
-            if (parentGun.TryGetComponent<Gun>(out Gun gunComponent))
+            if (parentGun.TryGetComponent<GunBase>(out GunBase gunComponent))
                 gunComponent.ReturnToPool(gameObject);
             else
                 Debug.LogError("Projectile -> OnTrigEn2d -> No parent gun or Gun component on it!");

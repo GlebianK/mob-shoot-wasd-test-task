@@ -11,8 +11,8 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float gunSwitchCooldown = 0.75f;
 
     private List<GameObject> guns;
-    private List<Gun> gunComponents;
-    private Gun currentGun;
+    private List<GunBase> gunComponents;
+    private GunBase currentGun;
     private int currentGunId;
 
     private bool canSwitchGun;
@@ -37,7 +37,7 @@ public class PlayerShoot : MonoBehaviour
                 temp_gun.transform.localPosition.y, temp_gun.transform.localPosition.z);
             guns.Add(temp_gun);
 
-            if (temp_gun.TryGetComponent<Gun>(out Gun gunComponent))
+            if (temp_gun.TryGetComponent<GunBase>(out GunBase gunComponent))
                 gunComponents.Add(gunComponent);
             else
                 Debug.LogError("Player shoot -> Awake -> Couldn't find Gun component!");
@@ -51,9 +51,8 @@ public class PlayerShoot : MonoBehaviour
                 guns[i].SetActive(true);
         }
         
-        foreach (Gun gun in gunComponents) // Инициализируем компоненты Gun (из ScriptableObject'ов) и соответствующие прожектайлы
+        foreach (GunBase gun in gunComponents) // Инициализируем компоненты Gun (из ScriptableObject'ов) и соответствующие прожектайлы
         {
-            gun.InitializeGun();
             gun.InitializeProjectiles();
         }
 
@@ -65,7 +64,13 @@ public class PlayerShoot : MonoBehaviour
     #region CUSTOM PRIVATE METHODS
     private void ShootGun()
     {
+        currentGun.IsTriggerPulled = true;
         currentGun.Shoot();
+    }
+
+    private void StopShoot()
+    {
+        currentGun.IsTriggerPulled = false;
     }
 
     private void SwitchGun(int prevOrNext)
@@ -99,17 +104,23 @@ public class PlayerShoot : MonoBehaviour
     }
     #endregion
 
-    public void OnTakeDamage()
-    {
-
-    }
 
     #region INPUT SYSTEM CALLBACKS
     public void OnShoot(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+            //Debug.LogWarning($"LMB 1: {context.action}");
             ShootGun();
+        }
+    }
+
+    public void OnRelease(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            //Debug.LogWarning($"LMB 2: {context.action}");
+            StopShoot();
         }
     }
 
