@@ -726,13 +726,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73c01697756b824f852bffcb944ce09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
+  health: {fileID: 207270699}
   gunPivot: {fileID: 113737258}
   gunPrefabs:
   - {fileID: 7635965119899244334, guid: 9b3bbd435382a9945bcd410fce9c14f6, type: 3}
   - {fileID: 7635965119899244334, guid: 11489fc02ca604f4997ae3cef76aa928, type: 3}
   - {fileID: 7635965119899244334, guid: 85648c3ebecc17a43ac0f2f3ea58ba59, type: 3}
-  gunSwitchCooldown: 0.75
+  gunSwitchCooldown: 0.1
 --- !u!114 &207270699
 MonoBehaviour:
   m_ObjectHideFlags: 0
