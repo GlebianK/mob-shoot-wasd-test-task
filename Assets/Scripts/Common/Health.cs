@@ -31,16 +31,16 @@ public class Health : MonoBehaviour
         if (isIFrame)
             return;
 
-        Debug.Log($"{gameObject.name}'s hp before hit: {currentHP}");
+        //Debug.Log($"{gameObject.name}'s hp before hit: {currentHP}");
         currentHP -= damage;
         TookDamage.Invoke();
-        Debug.Log($"{gameObject.name}'s hp after hit: {currentHP}");
+        //Debug.Log($"{gameObject.name}'s hp after hit: {currentHP}");
 
         SetIFrame();
 
         if (currentHP <= 0)
         {
-            Debug.LogWarning($"{gameObject.name} died!");
+            //Debug.LogWarning($"{gameObject.name} died!");
             currentHP = 0;
             Died.Invoke();
         }

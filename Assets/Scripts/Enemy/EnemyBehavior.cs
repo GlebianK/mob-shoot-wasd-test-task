@@ -8,7 +8,8 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private float damage;
 
     private GameObject target;
-    private Vector3 rotateDirection;
+    private Health targetHealth; // В данном проекте таргетом служит лишь игрок, так что сразу сохраняем ссылку на его Health-компонент
+    private Vector2 rotateDirection;
     private GameObject parentPool;
 
     public GameObject ParentPool => parentPool;
@@ -19,6 +20,9 @@ public class EnemyBehavior : MonoBehaviour
 
         if (target == null)
             throw new System.ArgumentNullException($"Object {gameObject.name} can't find player!");
+
+        if (!target.TryGetComponent<Health>(out targetHealth))
+            throw new System.ArgumentNullException($"Object {gameObject.name} can't find player's health!");
     }
 
 
@@ -32,9 +36,26 @@ public class EnemyBehavior : MonoBehaviour
     {
         //Debug.Log($"Enemy ({gameObject.name}) hit {col.gameObject.name}!");
 
+        // Подход с учётом единственности игрока как цели
+        if (col.gameObject.CompareTag("Player") && targetHealth != null)
+        {
+            targetHealth.TakeDamage(damage);
+        }
+
+        /*
+         * Более книверсальный подход
         if (col.gameObject.CompareTag("Player") && col.gameObject.TryGetComponent<Health>(out Health playerHealth))
         {
             playerHealth.TakeDamage(damage);
+        }
+        */
+    }
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player") && targetHealth != null)
+        {
+            targetHealth.TakeDamage(damage);
         }
     }
 
@@ -44,9 +65,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             rotateDirection = (target.transform.position - transform.position).normalized;
             Quaternion targetRotation = Quaternion.LookRotation(rotateDirection, transform.up);
-
             Quaternion rotationQuaternion = Quaternion.RotateTowards(transform.rotation, targetRotation, rotation_speed * Time.deltaTime);
-
             rb.SetRotation(rotationQuaternion);
         }
     }
