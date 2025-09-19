@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         totalEnemiesToKill = 0;
         kills = 0;
 
-        Application.targetFrameRate = 60; // TODO: убрать в билде!
+        //Application.targetFrameRate = 60; // TODO: убрать в билде!
 
         switch (SystemInfo.deviceType)
         {
