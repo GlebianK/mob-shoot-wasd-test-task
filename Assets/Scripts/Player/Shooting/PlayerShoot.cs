@@ -47,7 +47,7 @@ public class PlayerShoot : MonoBehaviour
                 Debug.LogError("Player shoot -> Awake -> Couldn't find Gun component!");
         }
 
-        for (int i = 0; i < guns.Count; i++) // Отсключаем "лишние" оружия
+        for (int i = 0; i < guns.Count; i++) // Отключаем "лишние" оружия
         {
             if (i != currentGunId)
                 guns[i].SetActive(false);
@@ -55,7 +55,7 @@ public class PlayerShoot : MonoBehaviour
                 guns[i].SetActive(true);
         }
         
-        foreach (GunBase gun in gunComponents) // Инициализируем компоненты Gun (из ScriptableObject'ов) и соответствующие прожектайлы
+        foreach (GunBase gun in gunComponents) // Инициализируем прожектайлы, закреплённый за каждой пушкой
         {
             gun.InitializeProjectiles();
         }
@@ -65,20 +65,20 @@ public class PlayerShoot : MonoBehaviour
         canSwitchGun = true;
     }
 
-    #region CUSTOM PRIVATE METHODS
-    private void ShootGun()
+    #region CUSTOM PUBLIC METHODS (пришлось сделать публичными для взаимодействия с UI)
+    public void ShootGun()
     {
         currentGun.IsTriggerPulled = true;
         currentGun.Shoot();
     }
 
-    private void StopShoot()
+    public void StopShoot()
     {
         currentGun.IsTriggerPulled = false;
     }
     #endregion
 
-    public void SwitchGun(int prevOrNext) // пришлось сделать публичным для взаиможействия с UI
+    public void SwitchGun(int prevOrNext) 
     {
         //Debug.Log($"Switching gun... Input parameter is {prevOrNext}");
 

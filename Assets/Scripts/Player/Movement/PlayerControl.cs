@@ -86,10 +86,25 @@ public class PlayerControl : MonoBehaviour
     }
     #endregion
 
-    #region OTHER CALLBACKS
+    #region OTHER CALLBACKS (Health system, UI related, etc)
     public void OnDied()
     {
         GameManager.Instance.RestartGame();
+    }
+
+    public void OnPressForward()
+    {
+        direction = Vector2.right;
+    }
+
+    public void OnPressBackward()
+    {
+        direction = Vector2.left;
+    }
+
+    public void OnStopMovement()
+    {
+        direction = Vector2.zero;
     }
     #endregion
 }

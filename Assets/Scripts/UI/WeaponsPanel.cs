@@ -7,6 +7,7 @@ public class WeaponsPanel : MonoBehaviour
     [SerializeField] private GameObject prevWeaponButton;
     [SerializeField] private GameObject nextWeaponButton;
     [SerializeField] private TMP_Text currentWeapon;
+    [SerializeField] private bool isTopPanel;
 
     private PlayerShoot shooting;
     private string[] weapons = { "Gun", "Shotgun", "Rifle" }; // Заглушка
@@ -27,6 +28,11 @@ public class WeaponsPanel : MonoBehaviour
         {
             prevWeaponButton.SetActive(false);
             nextWeaponButton.SetActive(false);
+        }
+        else
+        {
+            if (isTopPanel)
+                gameObject.SetActive(false);
         }
 
         currentWeapon.text = weapons[shooting.CurrentGunID];

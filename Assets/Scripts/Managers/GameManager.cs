@@ -5,6 +5,9 @@ public class GameManager : MonoBehaviour
 {
     static public GameManager Instance { get; private set; }
 
+    [SerializeField] private GameObject gameplayCanvas;
+    [SerializeField] private GameObject tutorialCanvas;
+
     private DeviceType deviceType;
 
     public DeviceType CurrentDeviceType 
@@ -19,7 +22,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
 
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 60; // TODO: убрать в билде!
 
         switch (SystemInfo.deviceType)
         {
@@ -34,6 +37,9 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.LogWarning($"Device type: {deviceType}");
+
+        gameplayCanvas.SetActive(true);
+        tutorialCanvas.SetActive(true);
 
         /*
          * Шпаргалка
