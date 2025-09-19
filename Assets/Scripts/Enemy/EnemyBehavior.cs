@@ -23,6 +23,9 @@ public class EnemyBehavior : MonoBehaviour
 
         if (!target.TryGetComponent<Health>(out targetHealth))
             throw new System.ArgumentNullException($"Object {gameObject.name} can't find player's health!");
+
+        if (GameManager.Instance.CurrentDeviceType == DeviceType.Handheld)
+            move_speed *= 0.5f;
     }
 
 

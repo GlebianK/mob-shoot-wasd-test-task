@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MovementButton : MonoBehaviour, IPointerUpHandler
 {
+    [SerializeField] private Button selfButton;
+
     private PlayerControl playerControl;
 
     private void Start()
@@ -10,8 +13,10 @@ public class MovementButton : MonoBehaviour, IPointerUpHandler
         PlayerControl playerControl = FindAnyObjectByType<PlayerControl>();
 
         if (playerControl == null)
-            throw new System.ArgumentNullException($"{gameObject.name}: No play control component!");
+            throw new System.ArgumentNullException($"{gameObject.name}: No player control component!");
     }
+
+
 
     public void OnPointerUp(PointerEventData eventData)
     {
