@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,8 +8,15 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject gameplayCanvas;
     [SerializeField] private GameObject tutorialCanvas;
+    [SerializeField] private GameObject victoryCanvas;
 
     private DeviceType deviceType;
+    private int totalEnemiesToKill;
+    private int kills;
+    private float timer;
+    private bool isCounting;
+
+    public float GameTimer => timer;
 
     public DeviceType CurrentDeviceType 
     { 
@@ -21,6 +29,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        Time.timeScale = 1.0f;
+
+        totalEnemiesToKill = 0;
+        kills = 0;
 
         Application.targetFrameRate = 60; // TODO: убрать в билде!
 
@@ -40,6 +53,7 @@ public class GameManager : MonoBehaviour
 
         gameplayCanvas.SetActive(true);
         tutorialCanvas.SetActive(true);
+        victoryCanvas.SetActive(false);
 
         /*
          * Шпаргалка
@@ -52,9 +66,52 @@ public class GameManager : MonoBehaviour
         */
     }
 
+    private void Start()
+    {
+        StopAllCoroutines();
+        timer = 0f;
+        isCounting = true;
+        StartCoroutine(TimerCoroutine());
+    }
+
+    private void Victory()
+    {
+        victoryCanvas.SetActive(true);
+    }
+
+    public void QuitApp()
+    {
+        Application.Quit();
+    }
+
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void AddEnemyAmount(int numToAdd)
+    {
+        totalEnemiesToKill += numToAdd;
+    }
+
+    public void CountKills(int numToAdd)
+    {
+        kills += numToAdd;
+
+        if (kills == totalEnemiesToKill)
+        {
+            Victory();
+            Time.timeScale = 0.0f;
+        }
+    }
+
+    private IEnumerator TimerCoroutine()
+    {
+        while (isCounting)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        yield return null;
+    }
 }

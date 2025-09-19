@@ -82,6 +82,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public void OnDied() // callback для Died-события компонента Health
     {
+        GameManager.Instance.CountKills(1);
         /*
         if (parentPool.TryGetComponent<EnemySpawner>(out EnemySpawner enemySpawner))
         {

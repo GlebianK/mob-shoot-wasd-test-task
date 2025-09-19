@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
 
     private bool canSpawn;
     private Queue<GameObject> enemiesPool;
+    private int totalEnemies;
 
     private void Awake()
     {
@@ -61,6 +62,8 @@ public class EnemySpawner : MonoBehaviour
                     throw new System.Exception("EnemySpawner -> No EnemyBehavior components found!");
             }
         }
+        totalEnemies = enemiesPool.Count;
+        GameManager.Instance.AddEnemyAmount(totalEnemies);
     }
 
     public void ReturnEnemyToPool(GameObject enemyToReturn)

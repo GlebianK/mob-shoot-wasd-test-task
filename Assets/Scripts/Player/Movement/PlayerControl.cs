@@ -81,7 +81,7 @@ public class PlayerControl : MonoBehaviour
         if (callback.performed)
         {
             Debug.LogWarning("Quit button (Esc) was pressed!");
-            Application.Quit();
+            GameManager.Instance.QuitApp();
         }
     }
     #endregion
