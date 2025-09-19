@@ -80,20 +80,16 @@ public class PlayerControl : MonoBehaviour
     {
         if (callback.performed)
         {
+            Debug.LogWarning("Quit button (Esc) was pressed!");
             Application.Quit();
         }
     }
     #endregion
 
     #region OTHER CALLBACKS
-    public void OnTakeDamage()
-    {
-       
-    }
-
     public void OnDied()
     {
-
+        GameManager.Instance.RestartGame();
     }
     #endregion
 }

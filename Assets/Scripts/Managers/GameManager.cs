@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         Debug.LogWarning($"Device type: {deviceType}");
 
         /*
+         * Шпаргалка
         Debug.LogWarning("Device Type: " + SystemInfo.deviceType);
         Debug.LogWarning("Device Model: " + SystemInfo.deviceModel);
         Debug.LogWarning("Device Name: " + SystemInfo.deviceName);
@@ -42,6 +44,11 @@ public class GameManager : MonoBehaviour
         Debug.LogWarning("Graphics Device Type: " + SystemInfo.graphicsDeviceType);
         Debug.LogWarning("System Memory Size: " + SystemInfo.systemMemorySize + " MB");
         */
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

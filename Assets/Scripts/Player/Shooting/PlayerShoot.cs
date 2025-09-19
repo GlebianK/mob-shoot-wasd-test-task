@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
@@ -16,6 +17,9 @@ public class PlayerShoot : MonoBehaviour
     private int currentGunId;
 
     private bool canSwitchGun;
+
+    public int CurrentGunID => currentGunId;
+    public UnityEvent WeaponChanged;
 
     private void Awake()
     {
@@ -72,8 +76,9 @@ public class PlayerShoot : MonoBehaviour
     {
         currentGun.IsTriggerPulled = false;
     }
+    #endregion
 
-    private void SwitchGun(int prevOrNext)
+    public void SwitchGun(int prevOrNext) // пришлось сделать публичным для взаиможействия с UI
     {
         //Debug.Log($"Switching gun... Input parameter is {prevOrNext}");
 
@@ -100,9 +105,9 @@ public class PlayerShoot : MonoBehaviour
         currentGun.gameObject.SetActive(true);
         //Debug.Log($"Cur gun: {currentGun.gameObject.name}");
         //Debug.Log($"PlayerShoot: Gun switched! Current gun id: {currentGunId}");
+        WeaponChanged.Invoke();
         StartCoroutine(SwitchGunCD());
     }
-    #endregion
 
 
     #region INPUT SYSTEM CALLBACKS

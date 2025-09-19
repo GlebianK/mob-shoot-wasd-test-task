@@ -10,6 +10,8 @@ public class Health : MonoBehaviour
     private float currentHP;
     private bool isIFrame;
 
+    public float HP => currentHP;
+
     public UnityEvent TookDamage;
     public UnityEvent Died;
 
