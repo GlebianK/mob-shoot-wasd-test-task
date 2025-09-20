@@ -24,18 +24,18 @@ public class MovementButton : MonoBehaviour//, IPointerUpHandler, IPointerDownHa
             if (isForward)
             {
                 playerControl.OnPressForward();
-                DevCanvas.Instance.UpdateIT1("direction: 1; 0");
+                //DevCanvas.Instance.UpdateIT1("direction: 1; 0");
             }
             else
             {
                 playerControl.OnPressBackward();
-                DevCanvas.Instance.UpdateIT1("direction: -1; 0");
+                //DevCanvas.Instance.UpdateIT1("direction: -1; 0");
             }
         }
         else if (context.canceled)
         {
             playerControl.OnStopMovement();
-            DevCanvas.Instance.UpdateIT1("direction: 0; 0");
+            //DevCanvas.Instance.UpdateIT1("direction: 0; 0");
         }
     }
 

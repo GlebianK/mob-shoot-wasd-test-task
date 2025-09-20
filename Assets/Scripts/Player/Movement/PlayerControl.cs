@@ -72,7 +72,7 @@ public class PlayerControl : MonoBehaviour
     {
         dragOrTouchDelta = context.ReadValue<Vector2>();
         //Debug.Log($"OnLook callback. Value = {dragOrTouchDelta}");
-        DevCanvas.Instance.UpdateIT2($"delta: {dragOrTouchDelta.x.ToString("F1")}; {dragOrTouchDelta.y.ToString("F1")}");
+        //DevCanvas.Instance.UpdateIT2($"delta: {dragOrTouchDelta.x.ToString("F1")}; {dragOrTouchDelta.y.ToString("F1")}");
         //RotatePlayer();
     }
 
