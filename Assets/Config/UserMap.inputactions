@@ -174,7 +174,7 @@
                 {
                     "name": "",
                     "id": "e5000f07-f899-48ba-b175-a3e49584768f",
-                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "path": "<Touchscreen>/touch*/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -276,6 +276,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "InteractWithUIControls",
+                    "type": "PassThrough",
+                    "id": "b8bdef5f-080d-4a19-ab77-85e93ee9199f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -441,6 +450,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "862be1d5-e7e1-45d3-949a-32a3f6342751",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractWithUIControls",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

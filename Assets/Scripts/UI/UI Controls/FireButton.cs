@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FireButton : MonoBehaviour, IPointerUpHandler
+public class FireButton : MonoBehaviour//, IPointerUpHandler
 {
     private PlayerShoot playerShoot;
 
@@ -13,8 +13,10 @@ public class FireButton : MonoBehaviour, IPointerUpHandler
             throw new System.ArgumentNullException($"{gameObject.name}: No play control component!");
     }
 
+    /*
     public void OnPointerUp(PointerEventData eventData)
     {
         playerShoot.StopShoot();
     }
+    */
 }

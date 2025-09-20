@@ -54,31 +54,31 @@ public class PlayerControl : MonoBehaviour
     #endregion
 
     #region INPUT SYSTEM CALLBACKS
-    public void OnMove(InputAction.CallbackContext callback)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        if (callback.performed)
+        if (context.performed)
         {
-            direction = callback.ReadValue<Vector2>();
+            direction = context.ReadValue<Vector2>();
             //Debug.Log($"OnMove callback. Value = {direction}");
         }
-        else if (callback.canceled)
+        else if (context.canceled)
         {
             direction = Vector2.zero;
             //Debug.LogWarning("OnMove callback. Movement canceled!");
         }
     }
 
-    public void OnLook(InputAction.CallbackContext callback)
+    public void OnLook(InputAction.CallbackContext context)
     {
-        dragOrTouchDelta = callback.ReadValue<Vector2>();
+        dragOrTouchDelta = context.ReadValue<Vector2>();
         //Debug.Log($"OnLook callback. Value = {dragOrTouchDelta}");
-
+        DevCanvas.Instance.UpdateIT2($"delta: {dragOrTouchDelta.x.ToString("F1")}; {dragOrTouchDelta.y.ToString("F1")}");
         //RotatePlayer();
     }
 
-    public void OnQuit(InputAction.CallbackContext callback)
+    public void OnQuit(InputAction.CallbackContext context)
     {
-        if (callback.performed)
+        if (context.performed)
         {
             Debug.LogWarning("Quit button (Esc) was pressed!");
             GameManager.Instance.QuitApp();

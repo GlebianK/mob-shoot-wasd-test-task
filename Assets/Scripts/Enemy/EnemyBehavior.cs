@@ -25,7 +25,7 @@ public class EnemyBehavior : MonoBehaviour
             throw new System.ArgumentNullException($"Object {gameObject.name} can't find player's health!");
 
         if (GameManager.Instance.CurrentDeviceType == DeviceType.Handheld)
-            move_speed *= 0.5f;
+            move_speed *= 0.375f;
     }
 
 
