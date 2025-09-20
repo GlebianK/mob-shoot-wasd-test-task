@@ -76,7 +76,7 @@ public class PlayerShoot : MonoBehaviour
     {
         currentGun.IsTriggerPulled = false;
     }
-    #endregion
+    
 
     public void SwitchGun(int prevOrNext) 
     {
@@ -108,11 +108,14 @@ public class PlayerShoot : MonoBehaviour
         WeaponChanged.Invoke();
         StartCoroutine(SwitchGunCD());
     }
-
+    #endregion
 
     #region INPUT SYSTEM CALLBACKS
     public void OnShoot(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0)
+            return;
+
         if (context.performed)
         {
             //Debug.LogWarning($"LMB press: {context.action}");
@@ -122,6 +125,9 @@ public class PlayerShoot : MonoBehaviour
 
     public void OnRelease(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0)
+            return;
+
         if (context.performed)
         {
             //Debug.LogWarning($"LMB release: {context.action}");
@@ -131,6 +137,9 @@ public class PlayerShoot : MonoBehaviour
 
     public void OnSwitchWeapon(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0)
+            return;
+
         if (context.performed)
         {
             //Debug.Log($"Scroll detected! Value: {context.ReadValue<Vector2>()}, action: {context.action}");

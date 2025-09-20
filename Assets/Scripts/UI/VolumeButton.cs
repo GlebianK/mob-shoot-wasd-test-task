@@ -17,6 +17,7 @@ public class VolumeButton : MonoBehaviour
     public void OnPressVolumeButton()
     {
         soundOn = !soundOn;
+        //Debug.LogWarning($"Sound button was pressed! soundOn value: {soundOn}");
         AudioManager.Instance.MuteOrUnmuteAudioSource(soundOn);
 
         if (soundOn)

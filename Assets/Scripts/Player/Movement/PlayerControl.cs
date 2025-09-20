@@ -56,6 +56,9 @@ public class PlayerControl : MonoBehaviour
     #region INPUT SYSTEM CALLBACKS
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0)
+            return;
+
         if (context.performed)
         {
             direction = context.ReadValue<Vector2>();
@@ -70,6 +73,9 @@ public class PlayerControl : MonoBehaviour
 
     public void OnLook(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0)
+            return;
+
         dragOrTouchDelta = context.ReadValue<Vector2>();
         //Debug.Log($"OnLook callback. Value = {dragOrTouchDelta}");
         //DevCanvas.Instance.UpdateIT2($"delta: {dragOrTouchDelta.x.ToString("F1")}; {dragOrTouchDelta.y.ToString("F1")}");

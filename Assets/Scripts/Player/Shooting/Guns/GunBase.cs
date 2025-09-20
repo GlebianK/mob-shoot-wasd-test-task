@@ -8,11 +8,36 @@ public class GunBase : MonoBehaviour
     [SerializeField] protected int projectilePoolSize = 10;
     [SerializeField] protected float cooldownBetweenShots;
     [SerializeField] protected GameObject projectile;
+    [SerializeField] protected AudioSource audioSource;
 
     protected Queue<GameObject> projectilePool;
     protected bool canShoot;
 
     public bool IsTriggerPulled { get; set; }
+
+    private void Start()
+    {
+        AudioManager am = FindAnyObjectByType<AudioManager>();
+        if (am != null)
+        {
+            am.ChangeAudioState.AddListener(OnAMStateChange);
+            //Debug.LogWarning($"{gameObject.name} subscribed to AM!");
+        }
+        else
+        {
+            throw new System.ArgumentNullException($"Gun ({gameObject.name}) couldn't find AudioManager!");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        AudioManager am = FindAnyObjectByType<AudioManager>();
+        if (am != null)
+        {
+            am.ChangeAudioState.RemoveListener(OnAMStateChange);
+            Debug.LogWarning($"{gameObject.name} unsubscribed from AM!");
+        }
+    }
 
     protected virtual void Awake()
     {
@@ -73,6 +98,7 @@ public class GunBase : MonoBehaviour
         else
             Debug.LogError("Gun -> Shoot -> No projectile component for current projectile!");
 
+        audioSource.Play();
         StartCoroutine(ShootCooldown());
     }
 
@@ -85,6 +111,15 @@ public class GunBase : MonoBehaviour
         objectToReturn.transform.localEulerAngles = Vector3.zero;
         objectToReturn.transform.localPosition = Vector3.zero;
         //Debug.Log($"Returned projectile to pool! Pool size: {projectilePool.Count}");
+    }
+
+    public void OnAMStateChange(bool soundOn)
+    {
+        //Debug.LogWarning($"{gameObject.name}: OnAMStateChange callback -> soundOn value: {soundOn}");
+        if (soundOn)
+            audioSource.mute = false;
+        else 
+            audioSource.mute = true;
     }
 
     protected IEnumerator ShootCooldown()

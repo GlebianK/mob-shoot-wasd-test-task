@@ -116,6 +116,7 @@ public class GunMultiple : GunBase
                 Debug.LogError("Gun -> Shoot -> No projectile component for current projectile!");
         }
 
+        audioSource.Play();
         StartCoroutine(ShootCooldown());
         ResetProjectilesList();
     }

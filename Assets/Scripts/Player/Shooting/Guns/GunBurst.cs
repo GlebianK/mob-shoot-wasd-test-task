@@ -21,5 +21,13 @@ public class GunBurst : GunBase
     {
         if (IsTriggerPulled)
             base.Shoot();
+        else
+        {
+            if (audioSource.isPlaying)
+                audioSource.Stop();
+        }
+
+        if (Time.timeScale == 0 && audioSource.isPlaying)
+            audioSource.Stop();
     }
 }

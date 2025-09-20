@@ -297,6 +297,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3827750019570896250}
-  move_speed: 200
-  rotation_speed: 1440
+  move_speed: 125
+  rotation_speed: 720
   damage: 5

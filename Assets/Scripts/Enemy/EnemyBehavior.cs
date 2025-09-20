@@ -46,7 +46,7 @@ public class EnemyBehavior : MonoBehaviour
         }
 
         /*
-         * Более книверсальный подход
+         * Более универсальный подход
         if (col.gameObject.CompareTag("Player") && col.gameObject.TryGetComponent<Health>(out Health playerHealth))
         {
             playerHealth.TakeDamage(damage);
