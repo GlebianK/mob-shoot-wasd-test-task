@@ -15,20 +15,6 @@ public class GunBase : MonoBehaviour
 
     public bool IsTriggerPulled { get; set; }
 
-    private void Start()
-    {
-        AudioManager am = FindAnyObjectByType<AudioManager>();
-        if (am != null)
-        {
-            am.ChangeAudioState.AddListener(OnAMStateChange);
-            //Debug.LogWarning($"{gameObject.name} subscribed to AM!");
-        }
-        else
-        {
-            throw new System.ArgumentNullException($"Gun ({gameObject.name}) couldn't find AudioManager!");
-        }
-    }
-
     private void OnDestroy()
     {
         AudioManager am = FindAnyObjectByType<AudioManager>();
@@ -50,6 +36,20 @@ public class GunBase : MonoBehaviour
     {
         Debug.LogWarning("This is the Base version of TakeFromPool!");
         return null;
+    }
+
+    public void SubscribeToEvents()
+    {
+        AudioManager am = FindAnyObjectByType<AudioManager>();
+        if (am != null)
+        {
+            am.ChangeAudioState.AddListener(OnAMStateChange);
+            //Debug.LogWarning($"{gameObject.name} subscribed to AM!");
+        }
+        else
+        {
+            throw new System.ArgumentNullException($"Gun ({gameObject.name}) couldn't find AudioManager!");
+        }
     }
 
     public void InitializeProjectiles()

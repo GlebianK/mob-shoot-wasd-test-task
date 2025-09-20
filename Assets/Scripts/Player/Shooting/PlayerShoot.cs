@@ -54,15 +54,19 @@ public class PlayerShoot : MonoBehaviour
             else 
                 guns[i].SetActive(true);
         }
-        
-        foreach (GunBase gun in gunComponents) // Инициализируем прожектайлы, закреплённый за каждой пушкой
-        {
-            gun.InitializeProjectiles();
-        }
 
         currentGun = gunComponents[currentGunId];
 
         canSwitchGun = true;
+    }
+
+    private void Start()
+    {
+        foreach (GunBase gun in gunComponents) // Инициализируем прожектайлы, закреплённый за каждой пушкой
+        {
+            gun.SubscribeToEvents();
+            gun.InitializeProjectiles();
+        }
     }
 
     #region CUSTOM PUBLIC METHODS (пришлось сделать публичными для взаимодействия с UI)
