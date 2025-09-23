@@ -2,6 +2,8 @@ HANDHELD DEVICES TARGETED SHOOTER (BUILD FOR WINDOWS)
 
 Тестовое задание с просторов HH
 
+ПРимерное время выолнения: 4.5 рабочих дня
+
 Задача: сделать шутер на Unity
 
 Основные требования:
